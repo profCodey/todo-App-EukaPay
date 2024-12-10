@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1a2b3c4d5e",
+    "content": "Finish writing the project documentation",
+    "dueDate": "2024-12-15",
+    "status": "Unfinished"
+  },
+  {
+    "id": "2k3l4m5n6o",
+    "content": "Conduct code review for pull requests",
+    "dueDate": "2024-12-12",
+    "status": "Done"
+  },
+  {
+    "id": "ffde1169-e1ff-4725-a663-a1b13b9455c9",
+    "content": "Finish building TODO Applications",
+    "dueDate": "2024-12-25",
+    "status": "Done"
+  }
+]
