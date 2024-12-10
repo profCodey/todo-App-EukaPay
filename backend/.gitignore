@@ -1,0 +1,10 @@
+node_modules/
+.env
+dist/
+.DS_Store
+npm-debug.log
+bun.*
+bun.lockb
+.prod.env
+.dev.env    
+*.env
