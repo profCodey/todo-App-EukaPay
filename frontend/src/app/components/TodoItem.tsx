@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { Delete as DeleteIcon, Edit as EditIcon } from "@mui/icons-material";
 import { Todo } from "../types/index";
-import EditModal from "./EditModal";
+import EditModal from "../pages/EditModal";
 
 interface TodoItemProps {
   todo: Todo;

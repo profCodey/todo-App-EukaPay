@@ -6,6 +6,7 @@ import TodoItem from "./TodoItem";
 import { useTodoContext } from "../context/TodoContext";
 
 const TodoList: FC = () => {
+  console.log('here pppp')
   const { todos, deleteTodo, updateTodo } = useTodoContext();
   console.log(todos);
 
