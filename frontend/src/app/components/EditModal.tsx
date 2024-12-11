@@ -91,7 +91,6 @@ export default function EditModal({ open, setOpen, todo }: EditModalProps) {
                   InputLabelProps={{
                     shrink: true,
                     style: { fontSize: "14px" },
-                    
                   }}
                 />
               </Box>

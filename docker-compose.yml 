@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ./frontend 
+    ports:
+      - "3000:80" 
+    networks:
+      - task-tracker-network
+    depends_on:
+      - backend 
+
+  backend:
+    build:
+      context: ./backend  
+    ports:
+      - "5000:5000" 
+    environment:
+      - PORT=5000  # The port on which the backend will run
+    depends_on:
+      - mongo  # Backend depends on MongoDB to start
+    networks:
+      - task-tracker-network
+
+  mongo:
+    image: mongo:latest  # Use the latest MongoDB image
+    volumes:
+      - mongo-data:/data/db  # Persist MongoDB data in a volume
+    networks:
+      - task-tracker-network
+
+# Define the custom network for communication between services
+networks:
+  task-tracker-network:
+    driver: bridge
+
+# Define a volume for persisting MongoDB data
+volumes:
+  mongo-data:
