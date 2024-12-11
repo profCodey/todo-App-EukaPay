@@ -1,11 +1,23 @@
-import React from 'react'
+"use client";
+import { FC } from 'react';
+import TodoList from '../components/TodoList';
+import { TodoProvider } from '../context/TodoContext';
+import { Box, Button, Typography } from '@mui/material';
+import Link from 'next/link';
+import TodoForm from '../components/TodoForm';
 
-const ListItem = () => {
+const HomePage: FC = () => {
   return (
-    <div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis nobis provident ullam quos perferendis, explicabo laudantium delectus quaerat inventore nam voluptate beatae recusandae! Libero suscipit reprehenderit necessitatibus ab quo dolorem.
-    </div>
-  )
-}
+    <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw'}}>
+      <Box sx={{maxWidth:'700px', mx:'50px'}}>
+        <Typography sx={{fontSize: '50px', fontWeight:600, textAlign: 'center'}}>Euka Pay Task Tracker</Typography>
+        <TodoProvider>
+            <TodoForm />
+            <TodoList />
+        </TodoProvider>
+      </Box>
+    </Box>
+  );
+};
 
-export default ListItem;
+export default HomePage;
