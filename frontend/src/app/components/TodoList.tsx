@@ -6,14 +6,29 @@ import TodoItem from "./TodoItem";
 import { useTodoContext } from "../context/TodoContext";
 
 const TodoList: FC = () => {
-  console.log('here pppp')
-  const { todos, deleteTodo, updateTodo } = useTodoContext();
+  const { todos, deleteTodo, updateTodo, isLoading } = useTodoContext();
   console.log(todos);
 
   const handleToggleStatus = (id: string, currentStatus: string) => {
     const newStatus = currentStatus === "done" ? "unfinished" : "done"; // Toggle the status
     updateTodo(id, { status: newStatus });
   };
+
+  if(isLoading) {
+    return (
+      <Grid2>
+        <h1>Tasks Loading...</h1>
+      </Grid2>
+    )
+  }
+
+  if(todos.length === 0) {
+    return (
+      <Grid2>
+        <h1>Your task list is empty. Please set a task.</h1>
+      </Grid2>
+    )
+  }
 
   return (
     <Grid2 container spacing={2}>
