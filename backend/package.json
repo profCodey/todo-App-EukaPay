@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "npx webpack"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
