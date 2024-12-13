@@ -2,11 +2,11 @@
   "name": "todoapp",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "build": "tsc"
+    "build": "npx webpack"
   },
   "keywords": [],
   "author": "",

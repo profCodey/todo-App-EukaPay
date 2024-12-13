@@ -1,5 +1,5 @@
-import { Todo } from '../models/Todo';
-import { FileSystem } from '../utils/FileSystem';
+import { Todo } from '../models/Todo.js';
+import { FileSystem } from '../utils/FileSystem.js';
 import { v4 as uuidv4 } from 'uuid';
 
 export class TodoService {

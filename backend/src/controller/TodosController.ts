@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { TodoService } from "../services/TodoServices";
+import { TodoService } from "../services/TodoServices.js";
 
 export class TodoController {
   static async getAllTodos(req: Request, res: Response): Promise<void> {
@@ -36,7 +36,7 @@ export class TodoController {
   static async updateTodo(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
     try {
-      const updatedTodo = await TodoService.updateTodo(id, req.body);
+      const updatedTodo = await TodoService.updateTodo(id as string, req.body);
       if (!updatedTodo) {
         res.status(404).json({ message: "Todo not found." });
         return;
@@ -53,7 +53,7 @@ export class TodoController {
   static async deleteTodo(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
     try {
-      const success = await TodoService.deleteTodo(id);
+      const success = await TodoService.deleteTodo(id as string);
       if (!success) {
         res.status(404).json({ message: "Todo not found." });
         return;

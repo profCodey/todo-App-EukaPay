@@ -1,9 +1,9 @@
-import express from 'express';
-import todoRoutes from './routes/todoRoutes';
+import express from 'express'; 
+import todoRoutes from './routes/todoRoutes.js';
 import cors from 'cors';
 
 const app = express();
-const PORT = process.env.NEXT_PUBLIC_BASE_URL || 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
