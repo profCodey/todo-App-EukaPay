@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DATA_FILE = path.resolve(__dirname, '../../data/todos.json');
+const DATA_FILE = path.resolve(__dirname, '../../src/data/todos.json');
 
 export class FileSystem {
     static async readData(): Promise<any[]> {

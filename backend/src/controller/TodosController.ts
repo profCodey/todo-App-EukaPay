@@ -3,6 +3,7 @@ import { TodoService } from "../services/TodoServices.js";
 
 export class TodoController {
   static async getAllTodos(req: Request, res: Response): Promise<void> {
+    console.log('hee')
     try {
       const todos = await TodoService.getAllTodos();
       res.json({
@@ -10,7 +11,7 @@ export class TodoController {
         data: todos,
       });
     } catch (error) {
-      res.status(500).json({ message: "Failed to get todos." });
+      res.status(500).json({ message: `Failed to get todos. ${error}` });
     }
   }
 
