@@ -16,6 +16,7 @@ interface TodoContextType {
   addTodo: (todo: AddTodo) => Promise<void>;
   updateTodo: (id: string, updatedTodo: Partial<Todo>) => Promise<void>;
   deleteTodo: (id: string) => Promise<void>;
+  isLoading: boolean;
 }
 
 const TodoContext = createContext<TodoContextType | undefined>(undefined);
@@ -30,11 +31,14 @@ export const useTodoContext = () => {
 
 export const TodoProvider = ({ children }: { children: ReactNode }) => {
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchTodos = async () => {
     try {
+      setIsLoading(true);
       const { data } = await fetchTodosAPI();
       setTodos(data);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -42,9 +46,11 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
 
   const addTodo = async (todo:AddTodo) => {
     try {
+      setIsLoading(true);
       const newTodoResponse = await addTodoAPI(todo);
       let newTodo = newTodoResponse.data
       setTodos((prev) => [...prev, newTodo]);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -52,9 +58,11 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
 
   const updateTodo = useCallback(async (id: string, updatedTodo: Partial<Todo>) => {
     try {
+      setIsLoading(true);
       const updated = await updateTodoAPI(id, updatedTodo);
       console.log('updated', updated);
       setTodos((prev) => prev.map((todo) => (todo.id === id ? updated.data : todo)));
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -62,8 +70,10 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
 
   const deleteTodo = useCallback(async (id: string) => {
     try {
+      setIsLoading(true);
       await deleteTodoAPI(id);
       setTodos((prev) => prev.filter((todo) => todo.id !== id));
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -74,7 +84,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <TodoContext.Provider value={{ todos, fetchTodos, addTodo, updateTodo, deleteTodo }}>
+    <TodoContext.Provider value={{ todos, fetchTodos, addTodo, updateTodo, deleteTodo, isLoading }}>
       {children}
     </TodoContext.Provider>
   );
